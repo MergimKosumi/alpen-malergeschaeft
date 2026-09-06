@@ -1,0 +1,478 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap");
+
+:root {
+  --alpen-bg: #f4f1ed;
+  --alpen-surface: #ffffff;
+  --alpen-soft: #faf8f5;
+  --alpen-ink: #151923;
+  --alpen-muted: #5f6570;
+  --alpen-line: #ded8cf;
+  --alpen-burgundy: #8f0028;
+  --alpen-burgundy-dark: #4c0016;
+  --alpen-sage: #69776d;
+  --alpen-gold: #c2a15e;
+  --alpen-radius: 8px;
+  --alpen-shadow: 0 18px 44px rgba(21, 25, 35, 0.12);
+  --alpen-container: 1180px;
+}
+
+body.alpen-redesign {
+  background: var(--alpen-bg) !important;
+  color: var(--alpen-ink) !important;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif !important;
+}
+
+body.alpen-redesign *,
+body.alpen-redesign *::before,
+body.alpen-redesign *::after {
+  box-sizing: border-box;
+}
+
+body.alpen-redesign a {
+  color: inherit;
+}
+
+body.alpen-redesign .jw-body {
+  background: var(--alpen-bg);
+}
+
+body.alpen-redesign .header-wrap {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(222, 216, 207, 0.92);
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+  min-height: 92px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0 24px !important;
+}
+
+body.alpen-redesign .header {
+  width: auto;
+  min-height: auto;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex: 0 0 auto;
+}
+
+body.alpen-redesign .jw-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+body.alpen-redesign .alpen-header-mark {
+  width: 78px;
+  height: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+
+body.alpen-redesign .jw-header-title {
+  margin: 0 !important;
+  color: var(--alpen-ink) !important;
+  font-family: "Sora", "Plus Jakarta Sans", Arial, sans-serif !important;
+  font-size: 1.24rem !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+body.alpen-redesign .menu {
+  width: auto;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+body.alpen-redesign .jw-menu-horizontal {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  padding: 5px !important;
+  border: 1px solid var(--alpen-line);
+  border-radius: var(--alpen-radius);
+  background: #fff;
+}
+
+body.alpen-redesign .jw-menu-item {
+  margin: 0 !important;
+}
+
+body.alpen-redesign .jw-menu-link {
+  min-height: 42px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #303642 !important;
+  padding: 0.58rem 0.86rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.16s ease;
+}
+
+body.alpen-redesign .jw-menu-link:hover,
+body.alpen-redesign .jw-menu-is-active .jw-menu-link,
+body.alpen-redesign .jw-menu-link.js-active-menu-item {
+  background: var(--alpen-burgundy) !important;
+  color: #fff !important;
+}
+
+body.alpen-redesign .jw-menu-link:hover {
+  transform: translateY(-1px);
+}
+
+body.alpen-redesign .block-content {
+  background: var(--alpen-bg);
+}
+
+body.alpen-redesign .jw-strip {
+  padding: 5rem 0 !important;
+}
+
+body.alpen-redesign .jw-strip__content-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+body.alpen-redesign .jw-strip__content {
+  width: min(var(--alpen-container), calc(100% - 2rem)) !important;
+}
+
+body.alpen-redesign .jw-heading-100,
+body.alpen-redesign .jw-heading-85,
+body.alpen-redesign h1,
+body.alpen-redesign h2,
+body.alpen-redesign h3 {
+  color: var(--alpen-ink) !important;
+  font-family: "Sora", "Plus Jakarta Sans", Arial, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+body.alpen-redesign .jw-heading-100 {
+  font-size: 3.1rem !important;
+  line-height: 1.08 !important;
+  font-weight: 700 !important;
+}
+
+body.alpen-redesign .jw-heading-85 {
+  font-size: 1.5rem !important;
+  line-height: 1.28 !important;
+  font-weight: 700 !important;
+}
+
+body.alpen-redesign .jw-element-imagetext-text p {
+  color: var(--alpen-muted) !important;
+  font-size: 1.07rem !important;
+  line-height: 1.72 !important;
+}
+
+body.alpen-redesign .jw-strip--style-image.jw-strip--primary {
+  position: relative;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(13, 17, 24, 0.82) 0%, rgba(13, 17, 24, 0.58) 42%, rgba(13, 17, 24, 0.14) 100%),
+    url("https://images.pexels.com/photos/5691613/pexels-photo-5691613.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1200&fit=crop") center 42% / cover no-repeat !important;
+}
+
+body.alpen-redesign .jw-strip--style-image.jw-strip--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 17, 24, 0.16);
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-strip__image-container {
+  display: none !important;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-strip__image {
+  filter: saturate(0.9) contrast(1.04);
+}
+
+body.alpen-redesign .jw-strip--primary .jw-strip__backdrop {
+  opacity: 1 !important;
+  background:
+    linear-gradient(90deg, rgba(13, 17, 24, 0.82) 0%, rgba(13, 17, 24, 0.58) 42%, rgba(13, 17, 24, 0.14) 100%),
+    linear-gradient(0deg, rgba(13, 17, 24, 0.16), rgba(13, 17, 24, 0.16)) !important;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-strip__content {
+  display: grid;
+  justify-items: start;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-strip__content-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-element-spacer-container {
+  height: 44px !important;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-heading-100 {
+  max-width: 720px;
+  color: #fff !important;
+  font-size: 4.4rem !important;
+  line-height: 1.02 !important;
+  text-align: left !important;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-element-imagetext-text p {
+  max-width: 720px;
+  margin-left: 0 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 1.16rem !important;
+  text-align: left !important;
+}
+
+body.alpen-redesign .jw-strip--primary .jw-btn-container {
+  text-align: left !important;
+}
+
+body.alpen-redesign .jw-btn {
+  min-height: 46px;
+  border: 1px solid var(--alpen-burgundy) !important;
+  border-radius: 6px !important;
+  background: var(--alpen-burgundy) !important;
+  color: #fff !important;
+  padding: 0.72rem 1.1rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  transition: transform 0.16s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+body.alpen-redesign .jw-btn:hover {
+  background: var(--alpen-burgundy-dark) !important;
+  border-color: var(--alpen-burgundy-dark) !important;
+  transform: translateY(-1px);
+}
+
+body.alpen-redesign .jw-strip--style-color {
+  background: var(--alpen-bg) !important;
+}
+
+body.alpen-redesign .jw-strip--style-color.jw-strip--color-shaded,
+body.alpen-redesign .jw-strip--style-color.jw-strip--primary {
+  background: #191d24 !important;
+}
+
+body.alpen-redesign .jw-strip--style-color.jw-strip--color-shaded .jw-heading-100,
+body.alpen-redesign .jw-strip--style-color.jw-strip--color-shaded .jw-heading-85,
+body.alpen-redesign .jw-strip--style-color.jw-strip--color-shaded p,
+body.alpen-redesign .jw-strip--style-color.jw-strip--primary .jw-heading-100,
+body.alpen-redesign .jw-strip--style-color.jw-strip--primary .jw-heading-85,
+body.alpen-redesign .jw-strip--style-color.jw-strip--primary p {
+  color: #fff !important;
+}
+
+body.alpen-redesign .jw-strip--style-split-image {
+  background: var(--alpen-surface) !important;
+}
+
+body.alpen-redesign .jw-strip--style-split-image .jw-strip__content-container {
+  border-top: 1px solid var(--alpen-line);
+  border-bottom: 1px solid var(--alpen-line);
+}
+
+body.alpen-redesign .jw-columns {
+  gap: 1rem !important;
+}
+
+body.alpen-redesign .block-content .jw-column {
+  background: var(--alpen-surface) !important;
+  border: 1px solid var(--alpen-line);
+  border-radius: var(--alpen-radius);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+body.alpen-redesign .block-content .jw-column:hover {
+  border-color: rgba(143, 0, 40, 0.32);
+  box-shadow: var(--alpen-shadow);
+}
+
+body.alpen-redesign .jw-element-image__image-wrapper,
+body.alpen-redesign .jw-strip__image-container,
+body.alpen-redesign .jw-element-image__image {
+  border-radius: var(--alpen-radius);
+}
+
+body.alpen-redesign .jw-element-image__image-wrapper {
+  overflow: hidden;
+  border: 1px solid var(--alpen-line);
+}
+
+body.alpen-redesign .jw-element-image__image {
+  filter: saturate(0.9) contrast(1.04);
+}
+
+body.alpen-redesign .jw-strip--style-split-image .jw-strip__image-container {
+  border-radius: 0;
+}
+
+body.alpen-redesign .jw-strip--style-split-image .jw-strip__image {
+  border-radius: 0;
+}
+
+body.alpen-redesign .block-footer,
+body.alpen-redesign .jw-section-footer,
+body.alpen-redesign .jw-section-footer .jw-strip {
+  background: #10141a !important;
+  color: #f1eee9 !important;
+}
+
+body.alpen-redesign .jw-section-footer .jw-strip__content {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding-top: 1.4rem;
+}
+
+body.alpen-redesign .jw-footer-text-content {
+  color: #f1eee9 !important;
+  font-weight: 600;
+}
+
+body.alpen-redesign .jw-mobile-menu {
+  min-height: 76px;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid var(--alpen-line);
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+}
+
+body.alpen-redesign .jw-mobile-menu__button,
+body.alpen-redesign .jw-mobile-header {
+  background: transparent !important;
+}
+
+body.alpen-redesign .jw-mobile-header {
+  height: 76px !important;
+}
+
+body.alpen-redesign .jw-mobile-menu::before,
+body.alpen-redesign .jw-mobile-menu::after,
+body.alpen-redesign .jw-mobile-header::before,
+body.alpen-redesign .jw-mobile-header::after,
+body.alpen-redesign .jw-mobile-header-content::before,
+body.alpen-redesign .jw-mobile-header-content::after {
+  display: none !important;
+  content: none !important;
+}
+
+body.alpen-redesign .jw-mobile-header-content {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+body.alpen-redesign .alpen-mobile-mark {
+  width: 58px;
+  height: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+
+body.alpen-redesign .jw-mobile-text {
+  color: var(--alpen-ink) !important;
+  font-family: "Sora", "Plus Jakarta Sans", Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+}
+
+body.alpen-redesign .jw-mobile-toggle {
+  color: var(--alpen-ink) !important;
+}
+
+body.alpen-redesign .jw-icon-burger,
+body.alpen-redesign .jw-icon-burger::before,
+body.alpen-redesign .jw-icon-burger::after {
+  background: var(--alpen-burgundy) !important;
+}
+
+body.alpen-redesign .jw-menu-clone {
+  background: #fff !important;
+  border-bottom: 1px solid var(--alpen-line);
+}
+
+body.alpen-redesign .jw-menu-clone .jw-menu-link {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media (max-width: 960px) {
+  body.alpen-redesign .header-wrap,
+  body.alpen-redesign .menu.jw-menu-copy {
+    display: none !important;
+  }
+
+  body.alpen-redesign .jw-strip {
+    padding: 3.8rem 0 !important;
+  }
+
+  body.alpen-redesign .jw-strip--style-image.jw-strip--primary {
+    min-height: 620px;
+  }
+
+  body.alpen-redesign .jw-strip--primary .jw-heading-100 {
+    font-size: 2.55rem !important;
+  }
+
+  body.alpen-redesign .jw-heading-100 {
+    font-size: 2.1rem !important;
+  }
+
+  body.alpen-redesign .jw-heading-85 {
+    font-size: 1.28rem !important;
+  }
+
+  body.alpen-redesign .jw-element-imagetext-text p,
+  body.alpen-redesign .jw-strip--primary .jw-element-imagetext-text p {
+    font-size: 1rem !important;
+  }
+
+  body.alpen-redesign .jw-columns {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  body.alpen-redesign .block-content .jw-column {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.alpen-redesign .jw-mobile-text {
+    display: none !important;
+  }
+
+  body.alpen-redesign .alpen-mobile-mark {
+    width: 72px;
+  }
+
+  body.alpen-redesign .jw-strip__content {
+    width: calc(100% - 2rem) !important;
+  }
+
+  body.alpen-redesign .jw-strip--primary .jw-heading-100 {
+    font-size: 2.2rem !important;
+  }
+}
