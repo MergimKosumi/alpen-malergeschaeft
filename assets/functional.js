@@ -1,0 +1,32 @@
+(() => {
+ 'use strict';
+ fetch('data/team.json').then(r=>{if(!r.ok)throw Error('Team unavailable');return r.json();}).then(team=>{
+  const cards=[...document.querySelectorAll('#team h3')];
+  team.forEach((person,index)=>{const heading=cards[index];if(!heading)return;heading.textContent=person.name||'';const role=heading.parentElement.querySelector('p');if(role)role.textContent=person.role||'';if(person.photo){const card=heading.parentElement.parentElement;const placeholder=card.querySelector('svg')?.parentElement;if(placeholder){const img=document.createElement('img');img.src=person.photo;img.alt=person.name||'Team';img.loading='lazy';img.style.cssText='width:100%;height:100%;object-fit:cover';placeholder.replaceChildren(img);}}});
+ }).catch(()=>{});
+ const menu = document.querySelector('#menu-toggle');
+ const mobile = document.querySelector('#mobile-nav');
+ function closeMenu(){mobile.hidden=true;menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Menü öffnen');}
+ menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';mobile.hidden=!open;menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Menü schliessen':'Menü öffnen');});
+ mobile.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!mobile.hidden){closeMenu();menu.focus();}});
+ window.matchMedia('(min-width:1024px)').addEventListener('change',event=>{if(event.matches)closeMenu();});
+ document.querySelectorAll('#faq button[aria-controls]').forEach(button=>button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));button.dataset.state=open?'open':'closed';document.getElementById(button.getAttribute('aria-controls')).hidden=!open;}));
+ const form=document.querySelector('#quote-form');
+ document.querySelectorAll('#leistungen a[href="#kontakt"]').forEach(link=>link.addEventListener('click',()=>{const title=link.closest('article')?.querySelector('h3')?.textContent || link.parentElement.querySelector('h3')?.textContent;const select=form.elements.service;if(title&&[...select.options].some(o=>o.value===title))select.value=title;}));
+ form.addEventListener('submit',event=>{if(!form.reportValidity()){event.preventDefault();return;}const button=form.querySelector('button');button.disabled=true;button.dataset.original=button.innerHTML;button.textContent='Anfrage wird übermittelt …';});
+ window.addEventListener('pageshow',()=>{const button=form.querySelector('button');if(button.dataset.original){button.disabled=false;button.innerHTML=button.dataset.original;}});
+ const status=document.querySelector('#form-status');
+ if(new URLSearchParams(location.search).get('sent')==='1'){status.textContent='Danke! Ihre Anfrage wurde übermittelt. Wir melden uns bei Ihnen.';status.hidden=false;status.tabIndex=-1;status.focus();history.replaceState(null,'',location.pathname+'#kontakt');}
+ const legal={
+ impressum:'<h2>Impressum</h2><address><strong>Alpen Malergeschäft GmbH</strong><br>Hochstrasse 154<br>8330 Pfäffikon ZH, Schweiz<br><a href="tel:+41445007771">+41 44 500 77 71</a><br><a href="mailto:info@alpen-malergeschaeft.ch">info@alpen-malergeschaeft.ch</a></address><p>Kontakt für Fragen zu dieser Website: info@alpen-malergeschaeft.ch.</p>',
+ datenschutz:'<h2>Datenschutz</h2><h3>Kontakt und Anfragen</h3><p>Verantwortlich für die Bearbeitung Ihrer Kontaktanfrage ist Alpen Malergeschäft GmbH, Hochstrasse 154, 8330 Pfäffikon ZH. Sie erreichen uns unter info@alpen-malergeschaeft.ch oder +41 44 500 77 71.</p><p>Wenn Sie das Formular benutzen, übermitteln Sie Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht sowie freiwillig Ihre Telefonnummer und gewünschte Leistung. Wir verwenden diese Angaben, um Ihre Anfrage zu beantworten und Ihr Vorhaben abzuklären.</p><h3>Formularversand</h3><p>Das Formular wird über den externen Dienst FormSubmit versendet. Dabei erhält dieser die eingegebenen Angaben und technische Verbindungsdaten. Weitere Informationen: <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">Datenschutz von FormSubmit</a>. Alternativ können Sie uns direkt telefonisch oder per E-Mail kontaktieren.</p><h3>Hosting und externe Inhalte</h3><p>Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf fallen technische Verbindungsdaten an. Für die Darstellung werden Schriftarten von Google Fonts und eine Karte von Google Maps geladen. Diese Dienste können Ihre IP-Adresse und weitere technische Daten erhalten. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Datenschutz von Google</a>.</p><h3>Ihre Angaben</h3><p>Bei Fragen zu Ihren Daten oder wenn Sie die Berichtigung oder Löschung Ihrer Anfrage wünschen, schreiben Sie an info@alpen-malergeschaeft.ch. Gesetzliche Aufbewahrungspflichten bleiben vorbehalten.</p>'
+ };
+ const dialog=document.createElement('dialog');dialog.className='legal-dialog';dialog.setAttribute('aria-label','Firmeninformationen');document.body.append(dialog);
+ let opener;
+ document.querySelectorAll('[data-legal]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();opener=link;dialog.innerHTML='<button type="button" aria-label="Schliessen">✕</button>'+legal[link.dataset.legal];dialog.querySelector('button').onclick=()=>dialog.close();dialog.showModal();}));
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>opener?.focus());
+ const skip=document.createElement('a');skip.href='#leistungen';skip.className='skip-link';skip.textContent='Zum Inhalt';document.body.prepend(skip);
+ const schema=document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify({'@context':'https://schema.org','@type':'HousePainter',name:'Alpen Malergeschäft GmbH',url:'https://alpen-malergeschaeft.ch/',logo:'https://alpen-malergeschaeft.ch/assets/alpen-logo.png',telephone:'+41445007771',email:'info@alpen-malergeschaeft.ch',address:{'@type':'PostalAddress',streetAddress:'Hochstrasse 154',postalCode:'8330',addressLocality:'Pfäffikon ZH',addressCountry:'CH'},areaServed:'Kanton Zürich'});document.head.append(schema);
+})();

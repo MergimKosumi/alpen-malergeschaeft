@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alpen-malergeschaeft.ch/sitemap.xml
