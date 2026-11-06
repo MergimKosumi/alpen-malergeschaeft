@@ -10,8 +10,8 @@
     if (!document.querySelector('link[data-alpen-favicon]')) {
       const favicon = document.createElement('link');
       favicon.rel = 'icon';
-      favicon.type = 'image/svg+xml';
-      favicon.href = 'favicon.svg';
+      favicon.type = 'image/png';
+      favicon.href = 'assets/alpen-logo.png';
       favicon.setAttribute('data-alpen-favicon', 'true');
       document.head.appendChild(favicon);
     }
