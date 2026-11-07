@@ -1,14 +1,13 @@
 name: Notify IndexNow after Pages deployment
 
 on:
-  workflow_run:
-    workflows: ["pages build and deployment"]
-    types: [completed]
+  push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: indexnow
@@ -16,14 +15,15 @@ concurrency:
 
 jobs:
   notify:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Check out the published revision
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          ref: ${{ github.sha }}
           persist-credentials: false
       - name: Validate live ownership and notify IndexNow
-        run: python3 scripts/indexnow.py
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/indexnow.py --wait-for-deploy "${{ github.sha }}"

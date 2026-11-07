@@ -1,7 +1,8 @@
 # IndexNow
 
-After a successful `pages build and deployment` run on `main`, the read-only
-`Notify IndexNow after Pages deployment` workflow validates the live key file,
+On a push to `main`, the read-only `Notify IndexNow after Pages deployment`
+workflow waits for the matching `pages build and deployment` run to succeed,
+validates the live key file,
 sitemap and canonical URLs, then submits the sitemap URLs to IndexNow.
 The workflow can also be run manually in GitHub Actions.
 

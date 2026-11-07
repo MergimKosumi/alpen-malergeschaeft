@@ -3,6 +3,7 @@
 import argparse
 from pathlib import Path
 import json
+import os
 import time
 import urllib.error
 import urllib.request
@@ -44,6 +45,7 @@ def fetch(url):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dry-run', action='store_true', help='Validate local sitemap without sending a notification')
+    parser.add_argument('--wait-for-deploy', metavar='SHA', help='Wait for the GitHub Pages deployment of this revision')
     args = parser.parse_args()
     urls = sitemap_urls((ROOT / 'sitemap.xml').read_bytes())
     if (ROOT / f'{KEY}.txt').read_text().strip() != KEY:
@@ -52,6 +54,26 @@ def main():
     if args.dry_run:
         print(json.dumps({'dry_run': True, 'urls': urls}))
         return
+
+    if args.wait_for_deploy:
+        api = f'https://api.github.com/repos/MergimKosumi/alpen-malergeschaeft/actions/runs?head_sha={args.wait_for_deploy}&per_page=100'
+        for attempt in range(30):
+            headers = {'Accept': 'application/vnd.github+json', 'User-Agent': 'Alpen-IndexNow/1.0'}
+            if os.environ.get('GH_TOKEN'):
+                headers['Authorization'] = 'Bearer ' + os.environ['GH_TOKEN']
+            with urllib.request.urlopen(urllib.request.Request(api, headers=headers), timeout=30) as response:
+                runs = json.load(response)['workflow_runs']
+            pages = [r for r in runs if r['name'] == 'pages build and deployment' and r['head_sha'] == args.wait_for_deploy]
+            if pages:
+                latest = max(pages, key=lambda r: r['id'])
+                if latest['status'] == 'completed':
+                    if latest['conclusion'] != 'success':
+                        raise RuntimeError('Pages deployment failed; no IndexNow notification sent')
+                    print('GitHub Pages deployment succeeded', flush=True)
+                    break
+            if attempt == 29:
+                raise RuntimeError('Timed out waiting for GitHub Pages deployment')
+            time.sleep(10)
 
     # Pages/CDN propagation may lag behind a successful deployment event.
     for attempt in range(12):
