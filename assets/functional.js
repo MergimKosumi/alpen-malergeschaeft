@@ -28,5 +28,4 @@
  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
  dialog.addEventListener('close',()=>opener?.focus());
  const skip=document.createElement('a');skip.href='#leistungen';skip.className='skip-link';skip.textContent='Zum Inhalt';document.body.prepend(skip);
- const schema=document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify({'@context':'https://schema.org','@type':'HousePainter',name:'Alpen Malergeschäft GmbH',url:'https://alpen-malergeschaeft.ch/',logo:'https://alpen-malergeschaeft.ch/assets/alpen-logo.png',telephone:'+41768226302',email:'info@alpen-malergeschaeft.ch',address:{'@type':'PostalAddress',streetAddress:'Hochstrasse 154',postalCode:'8330',addressLocality:'Pfäffikon ZH',addressCountry:'CH'},areaServed:'Kanton Zürich'});document.head.append(schema);
 })();
